@@ -1,0 +1,21 @@
+pipeline{
+    
+    agent any
+    tools{
+        maven 'maven3.9.2'
+    }//tools closing
+    stages{
+        stage('checkoutCode'){
+            steps{
+            
+    git branch: 'development', credentialsId: 'f2a35195-47b2-46f4-8f02-5482d6a87910', url: 'https://github.com/sreerajreddy/maven-web-application.git'
+            
+        }//steps closing
+        }//stage closing
+        stage('RunJobB'){
+            steps{
+                build job : 'JobB'
+            }//steps closing
+        }//stage closing
+    }//stages closing
+}//pipeline closing
